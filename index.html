@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Cards</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            width: 250px;
+            height: 350px;
+            background-image: url('her-picture.jpg'); /* Replace with her actual picture path */
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            margin: 20px;
+            position: absolute;
+            cursor: grab;
+            z-index: 1;
+            user-select: none;
+            color: white; /* Change text color to contrast with the image */
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+            border-radius: 15px;
+            z-index: 1;
+        }
+        .card * {
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #ffefef;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #f1f1f1;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .heart {
+            color: red;
+            font-size: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+        button {
+            background-color: #ff4e50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff2e30;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- First Card -->
+    <div class="card" id="card1">
+        <h1>Hey Beautiful! 😊</h1>
+        <p>Your smile is the brightest thing in my day. It makes my heart skip a beat! 💖</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('You’re amazing! 😘')">You’re Special!</button>
+    </div>
+
+    <!-- Second Card -->
+    <div class="card" id="card2">
+        <h1>Thinking of You 💭</h1>
+        <p>I can’t help but think about you every moment. You're always on my mind. 😍</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('You're always on my mind! 🥰')">Always You</button>
+    </div>
+
+    <!-- Third Card -->
+    <div class="card" id="card3">
+        <h1>You’re My Dream 🌸</h1>
+        <p>I dream about our time together. Will you make my dreams come true? 💕</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('I hope you say Yes! 🥺')">Say Yes!</button>
+    </div>
+
+    <!-- Fourth Card -->
+    <div class="card" id="card4">
+        <h1>Your Kindness ✨</h1>
+        <p>Your kindness and heart make the world a better place. I’m lucky to know you. 🌸</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('Your heart is pure gold!')">Pure Gold</button>
+    </div>
+
+    <!-- Fifth Card -->
+    <div class="card" id="card5">
+        <h1>Your Eyes 🌟</h1>
+        <p>Your eyes are like stars that light up my entire universe. I could get lost in them. 🌌</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('Your eyes are magical!')">Magical Eyes</button>
+    </div>
+
+    <!-- Sixth Card -->
+    <div class="card" id="card6">
+        <h1>Your Laugh 🎶</h1>
+        <p>Your laughter is the sweetest melody I’ve ever heard. It fills me with joy! 🎵</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('Your laughter makes everything better!')">Melody of Joy</button>
+    </div>
+
+    <!-- Seventh Card -->
+    <div class="card" id="card7">
+        <h1>You're My Sunshine ☀️</h1>
+        <p>You bring warmth and happiness into my life, just like the sun lights up the world. 🌞</p>
+        <div class="heart">❤️</div>
+        <button onclick="alert('You are my sunshine!')">Sunshine</button>
+    </div>
+
+    <script>
+        // Drag and Drop Functionality
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            let isDragging = false;
+            let offsetX = 0;
+            let offsetY = 0;
+
+            card.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - card.getBoundingClientRect().left;
+                offsetY = e.clientY - card.getBoundingClientRect().top;
+                card.style.zIndex = 2; // Bring the card to the top while dragging
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    card.style.left = `${e.clientX - offsetX}px`;
+                    card.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                card.style.zIndex = 1; // Reset z-index when not dragging
+            });
+        });
+    </script>
+
+</body>
+</html>
